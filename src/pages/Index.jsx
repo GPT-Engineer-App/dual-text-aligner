@@ -29,8 +29,8 @@ const Index = () => {
           <Text>
             {originalTexts.map((sentence, index) => (
               <Tooltip key={index} label={translatedTexts[index] || ""} isOpen={showTranslation[index]}>
-                <Text as="span" onClick={() => toggleTranslation(index)} cursor="pointer" _hover={{ bg: "yellow.200" }}>
-                  {sentence}{" "}
+                <Text as="span" onClick={() => toggleTranslation(index)} cursor="pointer" _hover={{ bg: "yellow.200" }} display="block">
+                  {sentence}
                 </Text>
               </Tooltip>
             ))}
