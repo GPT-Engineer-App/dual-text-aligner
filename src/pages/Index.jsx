@@ -8,7 +8,7 @@ const Index = () => {
   const [showTranslation, setShowTranslation] = useState(Array(100).fill(false)); // Assuming max 100 texts for simplicity
 
   const handleTextChange = (e, setTexts) => {
-    const texts = e.target.value.split(/(?<=[.!?])\s+/).map((sentence) => sentence.trim());
+    const texts = e.target.value.split(/(?<=[.!?])\s+/).map((sentence) => sentence.replace(/<line_break>/g, "\n").trim());
     setTexts(texts);
   };
 
@@ -29,8 +29,13 @@ const Index = () => {
           <Text>
             {originalTexts.map((sentence, index) => (
               <Tooltip key={index} label={translatedTexts[index] || ""} isOpen={showTranslation[index]}>
-                <Text as="span" onClick={() => toggleTranslation(index)} cursor="pointer" _hover={{ bg: "yellow.200" }} display="block">
-                  {sentence}
+                <Text as="span" onClick={() => toggleTranslation(index)} cursor="pointer" _hover={{ bg: "yellow.200" }}>
+                  {sentence.split("\n").map((line, i) => (
+                    <React.Fragment key={i}>
+                      {line}
+                      <br />
+                    </React.Fragment>
+                  ))}{" "}
                 </Text>
               </Tooltip>
             ))}
