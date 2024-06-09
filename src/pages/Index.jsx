@@ -29,7 +29,7 @@ const Index = () => {
           <Text>
             {originalTexts.map((sentence, index) => (
               <Tooltip key={index} label={translatedTexts[index] || ""} isOpen={showTranslation[index]}>
-                <Text as="span" onClick={() => toggleTranslation(index)} _hover={{ bg: "yellow.200" }}>
+                <Text as="span" onClick={() => toggleTranslation(index)} _hover={{ bg: "yellow.200" }} userSelect="none" cursor="default">
                   {sentence.split("\n").map((line, i) => (
                     <React.Fragment key={i}>
                       {line}
